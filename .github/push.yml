@@ -1,0 +1,25 @@
+name: Build packages and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+      options: --privileged
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+
+      - name: Get chip8 pkgbuild
+        uses: actions/checkout@v2
+        with:
+          repository: 'legendary-cookie/chip8-pkgbuild'
+          path: 'chip8'
+
+      - name: Build chip8
+        uses: FFY00/build-arch-package@v1
+        with:
+          PKGBUILD: chip8/PKGBUILD
+
