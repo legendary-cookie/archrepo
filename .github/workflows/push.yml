@@ -15,7 +15,7 @@ jobs:
         with:
           repository: 'legendary-cookie/chip8-pkgbuild'
           path: '${{ github.workspace }}/chip8'
-  
+   
       - name: Build chip8
         uses: FFY00/build-arch-package@v1
         with:
