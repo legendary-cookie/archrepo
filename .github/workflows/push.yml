@@ -8,13 +8,13 @@ jobs:
       options: --privileged
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
-        - /chip8/:/chip8
+        - ${{env.GITHUB_WORKSPACE}}/chip8:/chip8
     steps:
       - name: Get chip8
         uses: actions/checkout@v2
         with:
           repository: 'legendary-cookie/chip8-pkgbuild'
-          path: '/chip8'
+          path: '${{env.GITHUB_WORKSPACE}}/chip8'
         
       - name: Build chip8
         uses: FFY00/build-arch-package@v1
